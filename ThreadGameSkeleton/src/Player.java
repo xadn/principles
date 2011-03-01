@@ -3,10 +3,10 @@ public abstract class Player implements Runnable{
 	
 	final long MOVE_INTERVAL = MainGame.DELAY; 
 	
-	private Location location; // Current location
-	private char direction;     // Current direction
-	private int points = 0;    // Number of points
-	Thread thisThread = new Thread(this);
+	protected Location location;  // Current location
+	protected char direction;     // Current direction
+	private int points = 0;     // Number of points
+	private volatile Thread thisThread;
 	
 	public void Player() {
 		initalizeLocation();
@@ -14,8 +14,9 @@ public abstract class Player implements Runnable{
 	
 	protected abstract void initalizeLocation();
 	
-	public abstract void setDirection(char c);
+	protected abstract void move();
 	
+	public abstract void setDirection(char c);
 	
 	public Location getLocation() {
 		return location;
@@ -26,16 +27,20 @@ public abstract class Player implements Runnable{
 	}
 	
 	public void stopPlaying() {
-		
+		thisThread = null;
 	}
 
 	public void start() {
-		this.start();
+		thisThread = new Thread(this);
+		thisThread.start();
 	}
 	
 	@Override
 	public void run() {
-		sleep();
+		while( thisThread == Thread.currentThread() ) {
+			sleep();
+			move();
+		}
 	}
 	
 	private void sleep()
