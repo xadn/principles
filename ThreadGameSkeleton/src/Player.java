@@ -1,26 +1,52 @@
 
-public class Player implements Runnable{
+public abstract class Player implements Runnable{
 	
-	public enum DIR {N, S, E, W};
+	final long MOVE_INTERVAL = MainGame.DELAY; 
 	
-	//keeps track of current location
-	private Location location; 
+	private Location location; // Current location
+	private char direction;     // Current direction
+	private int points = 0;    // Number of points
+	Thread thisThread = new Thread(this);
 	
-	//keeps track of current direction: 0 is up,1 is right,2 is down,3 is left
-	private DIR direction; 
+	public void Player() {
+		initalizeLocation();
+	}
 	
-	//keeps track of number of points
-	private int points;
+	protected abstract void initalizeLocation();
 	
-	// Getter for the current location
+	public abstract void setDirection(char c);
+	
+	
 	public Location getLocation() {
 		return location;
 	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
+	
+	public int getPoints() {
+		return points;
+	}
+	
+	public void stopPlaying() {
 		
 	}
+
+	public void start() {
+		this.start();
+	}
+	
+	@Override
+	public void run() {
+		sleep();
+	}
+	
+	private void sleep()
+	{
+		try {
+			Thread.sleep(MOVE_INTERVAL);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}		
+	}
+
+
 
 }
