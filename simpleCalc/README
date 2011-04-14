@@ -1,0 +1,28 @@
+Andy Niccolai
+Bison SimpleCalc Intro Exercise
+Principles of Programming Languages
+4/13/2011
+
+edit: fixed bug in expression grammar statement that broke the order of operations
+
+-OVERVIEW
+The goal of this project is to learn how to use Bison and Flex together. The simpleCalc program parses input from a file or stdin and performs mathematical operations.
+
+-REQUIREMENTS
+Correct precedence for * and +
+Accept floats or ints
+Allow variable name
+Accept program of expressions
+Read from file
+
+-USAGE
+./simpleCalc <optional: filename>
+
+-INCLUDED FILES
+Makefile - run 'make' to compile the .l and .y files into the simpleCalc executable, probably only works on *nix systems
+
+simpleCalc.l - input file for flex, parses the input stream
+
+simpleCalc.y - input file for bison, defines the grammar and actions
+
+testfile - a input file for simpleCalc to test the file reading capabilities

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en-us"> 
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'> 
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+	<link href='c_vs_cpp.css' rel='stylesheet' type='text/css'>
+	<title>5 Differences between C and C++</title>
+</head>
+<body>
+    <div id='container'>
+        <div id='masthead'>
+            <h1>5 Differences between C and C++</h1>
+        </div><br />
+    
+            <h2>You don't have to declare functions before using them</h2>
+            <div class='code'>
+int sum(int a, int b); // You don't need this in C
+
+int main()
+{
+     int c = sum(1, 2);
+     return 0;
+}
+
+int sum(int a, int b)
+{
+     return a+b;
+}
+            </div>
+            <a href='http://www.cprogramming.com/tutorial/c-vs-c++.html'>http://www.cprogramming.com/tutorial/c-vs-c++.html</a><br />
+    
+            <h2>There is no boolean type</h2>
+The following code will cause an error in C:
+            <div class='code'>
+bool visited = false; // this doesn't work in C
+            </div><br />
+Use an enum to workaround this: 
+            <div class='code'>
+typedef enum {true, false} bool;
+            </div>
+            <a href='http://www.cprogramming.com/tutorial/c-vs-c++.html'>http://www.cprogramming.com/tutorial/c-vs-c++.html</a><br />
+
+            <h2>Deallocating memory is simpler</h2>
+C++ code:
+            <div class='code'>
+int *x = new int; // allocate memory
+int *x = new int[10];
+delete x; // free memory
+delete[] x;
+            </div><br />
+C code:
+            <div class='code'>
+int *x = malloc( sizeof(int) ); // allocate memory 
+int *x_array = malloc( sizeof(int) * 10 );
+free( x );  / free memory
+free( x_array );
+            </div>
+            <a href='http://www.cprogramming.com/tutorial/c-vs-c++.html'>http://www.cprogramming.com/tutorial/c-vs-c++.html</a><br />
+
+        <h2>There are no classes</h2>
+Unfortunately, there is no way to encapsulate methods like you can in a class.
+At least you can bundle data variables together in a struct.
+
+        <div class='code'>
+struct kitten {
+    char* name;
+    int lovability;    
+} sam, max;
+        </div><br />
+Add a typedef so you can declare new kittens wherever you want!
+        <div class='code'>
+typedef struct {
+    char* name;
+    int lovability;
+} kitten;
+
+kitten ralph;
+ralph.lovability = 20;
+        </div>
+        <a href='http://cprogramminglanguage.net/c-structure.aspx'>http://cprogramminglanguage.net/c-structure.aspx</a><br />
+        
+        <h2>C doesn't have cout or stream operators</h2>
+Instead of:
+        <div class='code'>
+cout &lt&lt "I love C++";
+        </div><br />
+Do this:
+        <div class='code'>
+printf("but, C is waaaaaay better");
+        </div>
+        <a href='http://people.cs.uchicago.edu/~iancooke/osstuff/ccc.html'>http://people.cs.uchicago.edu/~iancooke/osstuff/ccc.html</a><br />
+    
+        
+    </div>
+    <div id='footer'>
+        By Andy Niccolai for Principles of Programming Languages - 4/11/2011
+    </div>
+</body>

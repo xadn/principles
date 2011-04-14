@@ -1,0 +1,3 @@
+C:\sw\cygwin\bin\flex -L -o%1.c %1.l
+gcc -c %1.c
+gcc -Lc:\sw\cygwin\lib %1.o -o%1.exe -lfl -ly
